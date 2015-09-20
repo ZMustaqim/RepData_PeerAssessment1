@@ -5,13 +5,6 @@ Loading and preprocessing the data
 activity <- read.csv("activity.csv", colClasses = c("numeric", "character", "numeric"))
 head(activity)
 
-##   steps       date interval
-## 1    NA 2012-10-01        0
-## 2    NA 2012-10-01        5
-## 3    NA 2012-10-01       10
-## 4    NA 2012-10-01       15
-## 5    NA 2012-10-01       20
-## 6    NA 2012-10-01       25
 
 library(lattice)
 activity$date <- as.Date(activity$date, "%Y-%m-%d")
@@ -22,12 +15,7 @@ StepsTotal <- aggregate(steps ~ date, data = activity, sum, na.rm = TRUE)
 hist(StepsTotal$steps, main = "Total steps by day", xlab = "day", col = rainbow(5))
 
 mean(StepsTotal$steps) # Calculate mean
-
-## [1] 10766.19
-
 median(StepsTotal$steps) # Calculate median
-
-## [1] 10765
 
 What is the average daily activity pattern?
 
@@ -41,15 +29,12 @@ Which 5-minute interval, on average across all the days in the dataset, contains
 max_interval <- which.max(time_series)
 names(max_interval)
 
-## [1] "835"
-
 Imputing missing values
 Calculate and report the total number of missing values in the dataset (i.e. the total number of rows with NAs)
 
 activity_NA <- sum(is.na(activity))
 activity_NA
 
-## [1] 2304
 
 Devise a strategy for filling in all of the missing values in the dataset.
 Replaced Na by mean in 5 min interval
@@ -77,12 +62,8 @@ StepsTotal2 <- aggregate(steps ~ date, data = new_activity, sum, na.rm = TRUE)
 hist(StepsTotal2$steps, main = "Total steps by day", xlab = "day", col = heat.colors(5))
 
 mean(StepsTotal2$steps) # Mean
-
-## [1] 10766.19
-
 median(StepsTotal2$steps) # Median
 
-## [1] 10766.19
 
 After replacing the missing value with “mean”, new mean remain the same but the median is a little bit different.
 Are there differences in activity patterns between weekdays and weekends?
