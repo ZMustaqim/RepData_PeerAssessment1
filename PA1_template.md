@@ -36,7 +36,7 @@ StepsTotal <- aggregate(steps ~ date, data = activity, sum, na.rm = TRUE)
 hist(StepsTotal$steps, main = "Total steps by day", xlab = "day", col = rainbow(5))
 ```
 
-![plot of chunk Aggregate function ](figure/Aggregate function -1.png) 
+![plot of chunk Aggregate function](figure/Aggregate function-1.png) 
 
 ```r
 mean(StepsTotal$steps) # Calculate mean
